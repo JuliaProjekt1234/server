@@ -26,7 +26,11 @@
                     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 }).addTo(map);
 
-                L.marker([51.5, -0.09],
+              
+
+                    navigator.geolocation.getCurrentPosition((position)=>{
+
+  L.marker([position.coords.latitude, position.coords.longitude],
                     {
                         icon: L.divIcon({
                             className: 'ship-div-icon',
@@ -37,7 +41,8 @@
                     .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
                     .openPopup();
 
-                    navigator.geolocation.getCurrentPosition((position)=>alert(position.coords.latitude, position.coords.longitude), (error)=>alert(error.message))
+
+alert(position.coords.latitude, position.coords.longitude);}, (error)=>alert(error.message))
             </script>
         </body>
     </html>
