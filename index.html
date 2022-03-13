@@ -1,0 +1,43 @@
+<html>
+        <head>
+            <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+            <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+                    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+                    crossorigin=""></script>
+            <style>
+            #map{
+                height:100%;
+            }
+
+            .d{
+                width:50px;
+                height:50px;
+            }
+            </style>
+        </head>
+        <body>
+            <div id="map"></div>
+            <script>
+                var markerColor = window.markerColor;
+                var image = '<svg style="transform: scale(3.5);" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="50" height="50" viewBox="0 0 13.229166 13.229167" version="1.1" id="svg8" inkscape:version="0.92.3 (2405546, 2018-03-11)" sodipodi:docname="map_marker.svg"><defs id="defs2"><linearGradient inkscape:collect="always" id="linearGradient4777"><stop style="stop-color:'+markerColor+';stop-opacity:1;" offset="0" id="stop4773" /><stop style="stop-color:'+markerColor+';stop-opacity:0;" offset="1" id="stop4775" /></linearGradient><radialGradient inkscape:collect="always" xlink:href="#linearGradient4777" id="radialGradient4779" cx="6.6145835" cy="292.46426" fx="6.6145835" fy="292.46426" r="4.1592499" gradientTransform="matrix(0.95458467,-0.01267122,0.00290914,0.38922282,-0.55041686,179.01672)" gradientUnits="userSpaceOnUse" /></defs><sodipodi:namedview id="base" pagecolor="#ffffff" bordercolor="#666666" borderopacity="1.0" inkscape:pageopacity="0.0" inkscape:pageshadow="2" inkscape:zoom="11.2" inkscape:cx="22.560752" inkscape:cy="31.439213" inkscape:document-units="mm" inkscape:current-layer="layer1" showgrid="false" units="px" inkscape:window-width="1920" inkscape:window-height="1001" inkscape:window-x="-9" inkscape:window-y="1341" inkscape:window-maximized="1" /><metadata id="metadata5"> <rdf:RDF> <cc:Work rdf:about=""> <dc:format>image/svg+xml</dc:format> <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><g inkscape:label="Layer 1" inkscape:groupmode="layer" id="layer1" transform="translate(0,-283.77082)"><ellipse style="opacity:1;fill:url(#radialGradient4779);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.53133333;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke markers fill" id="path4747" cx="6.6145835" cy="292.76666" rx="3.96875" ry="1.3229166" /><path style="opacity:1;fill:'+markerColor+';fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.61605537;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke markers fill"   d="m 6.6145833,286.01977 a 1.984375,1.984375 0 0 0 -1.984375,1.98438 1.984375,1.984375 0 0 0 0.3519164,1.12448 l 1.6453776,3.63802 1.5973187,-3.60599 a 1.984375,1.984375 0 0 0 0.3741372,-1.15651 1.984375,1.984375 0 0 0 -1.9843749,-1.98438 z m 0,1.19063 a 0.6614583,0.6614583 0 0 1 0.6614583,0.66145 0.6614583,0.6614583 0 0 1 -0.6614583,0.66146 0.6614583,0.6614583 0 0 1 -0.6614584,-0.66146 0.6614583,0.6614583 0 0 1 0.6614584,-0.66145 z"id="path5181"inkscape:connector-curvature="0" /></g></svg>';
+                var map = L.map('map').setView([51.505, -0.09], 13);
+
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                }).addTo(map);
+
+                L.marker([51.5, -0.09],
+                    {
+                        icon: L.divIcon({
+                            className: 'ship-div-icon',
+                            html: image
+                        })
+                    }
+                    ).addTo(map)
+                    .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
+                    .openPopup();
+
+                    navigator.geolocation.getCurrentPosition((position)=>alert(position), (error)=>alert(error.message))
+            </script>
+        </body>
+    </html>
